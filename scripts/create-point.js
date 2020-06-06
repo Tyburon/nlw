@@ -30,14 +30,16 @@ function getCities(event){
 
     const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${ufValue}/municipios`
 
+    citySelect.innerHTML = "<option value>Selecione a Cidade</option>"
+    citySelect.disabled = true
+
     fetch(url)
     .then( (res) => {return res.json()})
     .then(cities =>{
 
         for(const city of cities){
 
-            citySelect.innerHTML += `<option value="${city.id}">${city.nome}</option>`
-
+            citySelect.innerHTML += `<option value="${city.nome}">${city.nome}</option>`
         } 
 
         citySelect.disabled = false;
@@ -55,3 +57,27 @@ document
     /*
     (res) => {return res.json()}  tambem pode ser escrito assim: res => res.json()
 */
+
+const itemsToCollect = document.querySelectorAll(".items-grid li")
+
+for(const item of itemsToCollect){
+
+    item.addEventListener("click", handleSelectedItem)
+
+}
+
+let selectedItems = []
+
+function handleSelectedItem(){
+    const itemLi = event.target
+    
+    //add or remova a class
+    itemLi.classList.toggle("selected")
+
+    const itemId = itemLi.dataset.id
+    
+    const alreadySelected = selectedItems.findIndex(function(item){
+        
+    })
+
+}
