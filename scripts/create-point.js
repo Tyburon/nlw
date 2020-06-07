@@ -1,4 +1,6 @@
 
+
+//pegando os estados da api do ibge
 function populateUFs(){
     const ufSelect = document.querySelector("select[name=uf]")
 
@@ -16,6 +18,7 @@ function populateUFs(){
     })
 }
 
+//pegando as cidades por uf
 populateUFs()
 
 function getCities(event){
@@ -58,6 +61,8 @@ document
     (res) => {return res.json()}  tambem pode ser escrito assim: res => res.json()
 */
 
+//cor diferente para os itens selecionados
+
 const itemsToCollect = document.querySelectorAll(".items-grid li")
 
 for(const item of itemsToCollect){
@@ -65,6 +70,8 @@ for(const item of itemsToCollect){
     item.addEventListener("click", handleSelectedItem)
 
 }
+
+const collectedItems = document.querySelector("input[name=items]")
 
 let selectedItems = []
 
@@ -74,10 +81,38 @@ function handleSelectedItem(){
     //add or remova a class
     itemLi.classList.toggle("selected")
 
+//Preparando a seleção dos campos para o back-end
+
     const itemId = itemLi.dataset.id
     
-    const alreadySelected = selectedItems.findIndex(function(item){
-        
+    //verificar se existem itens selecionados, se sim
+    //pegar os itens selecionados
+
+    const alreadySelected = selectedItems.findIndex(item => {
+        const itemFound = item == itemId
+        return itemFound
+
     })
+
+    //se ja tiver selecionado
+    if(alreadySelected >= 0){
+
+        const filteredItems = selectedItems.filter(item =>{
+            const itemIsDifferent = item != itemId
+            return itemIsDifferent
+
+        })
+
+        selectedItems = filteredItems
+
+    //se não tiver selecionado
+    //adicionar a seleção
+    }else{
+
+        selectedItems.push(itemId)
+
+    }
+
+    collectedItems.value = selectedItems
 
 }
