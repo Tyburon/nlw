@@ -1,39 +1,21 @@
-<!DOCTYPE html>
-<html lang="pt_br">
+{% extends "layout.html" %}
 
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar um ponto de coleta</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    {% block title %}
+        <title>Criar um ponto de coleta</title>
+    {% endblock title %}
     
+
+    {% set pageId = "page-create-point" %}
+
  
-    <link rel="stylesheet" href="/Styles/main.css">
-    <link rel="stylesheet" href="/Styles/create-point.css">
-    <link rel="stylesheet" href="/Styles/responsive.css">
+    {% block styles %}
+        <link rel="stylesheet" href="/Styles/create-point.css">
+    {% endblock styles %}
     
-</head>
 
+    {% block content %}
 
-
-<body>
-
-    <div id="page-create-point">
-
-
-        
-    
-        <header>
-    
-                <img src="/assets/logo.svg" alt="Logomarca">
-    
-                <a href="/index.html">
-                    <span></span>
-                    Voltar para home</a>
-    
-        </header>
+    {% include "partials/page-header.html" %}
 
         <form action="">
 
@@ -44,22 +26,36 @@
                     <h2>Dados da entidade</h2>
                 </legend>
 
-                <div class="field">
+                <div class="field-group">
+                    <div class="field">
 
-                    <label for="name">Nome da entidade</label>
-                    <input type="text" name="name" required>
+                        <label for="name">Nome da entidade</label>
+                        <input type="text" name="name" required = "required">
+    
+                    </div>
+                    <div class="field">
 
+                        <label for="name">Imagem da entidade</label>
+                        <input 
+                            type="url" 
+                            name="image" 
+                            placeholder="http://"
+                            required = "required">
+    
+                    </div>
                 </div>
+
+                
 
                 <div class="field-group">
 
                     <div class="field">
                         <label for="address">Endereço</label>
-                        <input type="text" name="address" required>
+                        <input type="text" name="address" required = "required">
                     </div>
                     <div class="field">
                         <label for="address2">Número/complemento</label>
-                        <input type="text" name="address2" required>
+                        <input type="text" name="address2" required = "required">
                     </div>
 
                 </div>
@@ -68,7 +64,7 @@
 
                     <div class="field">
                         <label for="state">Estado</label>
-                        <select name="uf" required>
+                        <select name="uf" required = "required">
                             <option value="">Selecione o Estado</option>
                         </select>
 
@@ -76,7 +72,7 @@
                     </div>
                     <div class="field">
                         <label for="city">Cidade</label>
-                        <select name="city" disabled required>
+                        <select name="city" disabled required = "required">
                             <option value="">Selecione a cidade</option>
                         </select>
                         
@@ -90,6 +86,7 @@
             <fieldset>
                 <legend>
                     <h2>Itens de coleta</h2>
+                    <span>Selecione um ou mais itens abaixo</span>
                 </legend>
 
                 <div class="items-grid">
@@ -123,14 +120,16 @@
 
             </fieldset>
 
+            <div id="button1">
             <button type="submit">Cadastrar ponto de coleta</button>
-
+            </div>
         </form>
+    {% endblock content %}
 
-        
-    </div>
+
+    {% block scripts %}
+        <script src="/scripts/create-point.js"></script>
+    {% endblock scripts %}
 
     
-    <script src="/scripts/create-point.js"></script>
-</body>
-</html>
+    

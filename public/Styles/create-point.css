@@ -67,6 +67,19 @@
 
     margin-bottom: 40px;
 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+}
+
+#page-create-point form fieldset legend span{
+
+    font-size: 14px;
+    color: var(--title-color);
+
 }
 
 #page-create-point form fieldset legend h2{
