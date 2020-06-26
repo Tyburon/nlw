@@ -61,7 +61,7 @@ document
     (res) => {return res.json()}  tambem pode ser escrito assim: res => res.json()
 */
 
-//cor diferente para os itens selecionados
+//pegar todos os li's
 
 const itemsToCollect = document.querySelectorAll(".items-grid li")
 
